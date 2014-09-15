@@ -1,0 +1,33 @@
+<div class="row-fluid">
+    <div class="span12">
+          <div class="pull-right">
+              <a href="<?php echo $this->url(array('controller' => $this->text(strtolower('%%TABLE_NAME%%')), 'action'=>$this->showAllUrl), null, true) ?>" >
+                  Back to list <?php echo $this->text('%%TABLE_NAME%%'); ?>
+              </a>
+          </div>
+          <h2>
+              Delete <?php echo $this->text('%%TABLE_NAME%%'); ?>        
+          </h2>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <form class="form-horizontal" method="post" action="">
+            <fieldset>
+                
+                			Are you sure you want to delete this item?
+                
+                <div class="form-actions">
+                    <input type="hidden" name="value" id="value" value="<?php $this->id?>">
+                    <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Submit</button>
+                    <button type="button" class="btn"><i class="icon-refresh"></i>
+                    	<a href="<?php echo $this->url(array('controller' => $this->text(strtolower('%%TABLE_NAME%%')), 'action'=>$this->showAllUrl), null, true) ?>" >
+                     		Cancel
+                     	</a>
+                     </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

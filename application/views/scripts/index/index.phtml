@@ -1,0 +1,129 @@
+<div class="row-fluid show-grid form-horizontal">
+    <div class="span12">
+           <h2>
+              Gen code
+          </h2>
+    </div>
+</div>
+<div class="row-fluid show-grid form-horizontal">
+    <div class="span12">
+        <div class="well">
+
+            <form action="" method="post">
+                <table width="100%" border="0" cellspacing="1" cellpadding="0" class="table table-striped table-bordered table-condensed">
+    
+    
+                  <!-- Row SiteUrl -->
+                  <tr class="bg-tr">
+                        <td width="30%" class="title">
+                            <?php echo $this->text('Site');?> <span class="required"></span>
+                        </td>
+                        <td>
+                                <?php echo $this->renderFormElement($this->form->Site); ?>
+                                <span id="checkFolder" class="text-danger"></span>       
+                         </td>
+                  </tr>
+    
+                  <!-- Row SiteUrl -->
+                  <tr class="bg-tr">
+                        <td width="30%" class="title">
+                            <?php echo $this->text('DatabaseHost');?> <span class="required"></span>
+                        </td>
+                        <td><?php echo $this->renderFormElement($this->form->DatabaseHost); ?></td>
+                  </tr>
+    
+                  <!-- Row SiteUrl -->
+                  <tr class="bg-tr">
+                        <td width="30%" class="title">
+                            <?php echo $this->text('DatabaseName');?> <span class="required"></span>
+                        </td>
+                        <td><?php echo $this->renderFormElement($this->form->DatabaseName); ?></td>
+                  </tr>
+    
+                  <!-- Row SiteUrl -->
+                  <tr class="bg-tr">
+                        <td width="30%" class="title">
+                            <?php echo $this->text('DatabaseUsername');?> <span class="required"></span>
+                        </td>
+                        <td><?php echo $this->renderFormElement($this->form->DatabaseUsername); ?></td>
+                  </tr>
+    
+                  <!-- Row SiteUrl -->
+                  <tr class="bg-tr">
+                        <td width="30%" class="title">
+                            <?php echo $this->text('DatabasePassword');?> <span class="required"></span>
+                        </td>
+                        <td><?php echo $this->renderFormElement($this->form->DatabasePassword); ?></td>
+                  </tr>
+                  <!-- Row SiteUrl -->
+                  <tr class="bg-tr">
+                        <td width="30%" class="title">
+                            <?php echo $this->text('Schema');?> <span class="required"></span>
+                        </td>
+                        <td><?php echo $this->renderFormElement($this->form->Schema); ?></td>
+                  </tr>
+                  
+                  <tr class="bg-tr">
+                    <td colspan="2">
+                        <button type="reset"  class="btn" ><i class="icon-refresh"></i> Reset</button>
+                        <button type="submit" name="SubmitGen" value="Model" class="btn btn-primary" > Gen Model</button>
+                        <button type="submit" name="SubmitGen" value="Form" class="btn btn-primary" > Gen Form</button>
+                        <button type="submit" name="SubmitGen" value="Controller" class="btn btn-primary" > Gen Controller</button>
+                        <button type="submit" name="SubmitGen" value="View" class="btn btn-primary" > Gen View</button>
+                        <button type="submit" name="SubmitGen" value="ApplicationIni" class="btn btn-primary" > Gen Application ini</button>
+                        <button type="submit" name="SubmitGen" value="NavigationIni" class="btn btn-primary" > Gen Navigation ini</button>
+                        <button type="submit" name="SubmitGen" value="All" class="btn btn-primary" > Gen All</button>
+                        <button type="submit" name="SubmitGen" value="Deploy" class="btn btn-primary" > Deploy</button>
+                        
+                    </td>
+                  </tr>
+                </table>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid show-grid form-horizontal">
+    <div class="span12">
+           <h2>
+              Msg : <?php echo date("D M d, Y G:i a",  strtotime("+7 hours"));?>
+          </h2>
+    </div>
+</div>
+
+
+<div class="row-fluid show-grid form-horizontal">
+    <div class="span12">
+              <?php echo Gen_Site::getMsg(); ?>
+    </div>
+</div>
+
+<script type='text/javascript'>
+    $('document').ready(function(){
+        $("input#Site").blur(function(){
+        	var url = '/index/ajax-check-folder/json';
+            var data = {};
+             data[$(this).attr('name')] = $(this).val();
+
+             $.ajax({ // ajax call starts
+                 url: url, // JQuery loads serverside.php
+                 type: 'POST',
+                 data: data, // Send value of the clicked button
+                 dataType: 'json', // Choosing a JSON datatype
+                 success: function(data) // Variable data contains the data we get from serverside
+                 {     
+                     if (data.success) { // If clicked buttons value is all, we post every wine
+                             $('#checkFolder').text('already exist');
+                     }else{
+                    	      $('#checkFolder').text('available');
+                     }
+                 },
+                 error: function(xhr, ajaxOptions, thrownError) {
+                	 $('#checkFolder').text(xhr.status+';'+thrownError);
+                 }
+             });
+             
+        });
+    });
+</script>
