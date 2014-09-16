@@ -1,0 +1,22 @@
+body{
+    padding: 10px;
+}
+
+/** TRANSLATE */
+.quick-update-box {
+   position: fixed;
+   right: 0;
+   top: 0
+}
+
+form input[type='checkbox']{
+    margin-top: 10px;   
+}
+
+.hint{
+    padding:2px;
+}
+
+a.active { 
+	color: #2a6496;
+}
