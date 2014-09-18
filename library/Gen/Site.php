@@ -289,8 +289,8 @@ navigation.%%TABLE_NAME%%.pages.%%TABLE_NAME%%.visible    = true
             $showAllRecordContent   = $this->_getViewShowAllRecordContent($tableName,$fields);
             $this->_createFile($partialDir, $this->_getViewShowRecordFileName($tableName), $showAllRecordContent);
 
-            $updateContent    = $this->_getViewDeleteContent($tableName,$fields);
-            $this->_createFile($scriptDir, $this->_getViewDeleteFileName($tableName), $updateContent);
+            $deleteContent    = $this->_getViewDeleteContent($tableName,$fields);
+            $this->_createFile($scriptDir, $this->_getViewDeleteFileName($tableName), $deleteContent);
             
             $updateContent    = $this->_getViewUpdateContent($tableName,$fields);
             $this->_createFile($scriptDir, $this->_getViewUpdateFileName($tableName), $updateContent);

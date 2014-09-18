@@ -1,11 +1,12 @@
 <?php 
     $form = $this->form;
+    $controller = ltrim(preg_replace("/([A-Z])/", "-$1", '%%TABLE_NAME%%'), '-');
 ?>
 
 <div class="row-fluid">
     <div class="span12">
           <div class="pull-right">
-              <a href="<?php echo $this->url(array('controller' => $this->text(strtolower('%%TABLE_NAME%%')), 'action'=>$this->showAllUrl), null, true) ?>" >	
+              <a href="<?php echo $this->url(array('controller' => $this->text(strtolower($controller)), 'action'=>$this->showAllUrl), null, true) ?>" >	
                   Back to list <?php echo $this->text('%%TABLE_NAME%%'); ?>
               </a>
           </div>
