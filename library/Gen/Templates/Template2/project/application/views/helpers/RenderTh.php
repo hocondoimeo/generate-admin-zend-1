@@ -17,15 +17,23 @@ class Zend_View_Helper_RenderTh extends Zend_View_Helper_Abstract
      * @return string
      */
     function renderTh($nameDb, $displayName = "", $option = "" ) {
+<<<<<<< HEAD
         $nameDbSort = $nameDb. '_Sort';
         $displayName = (!empty($displayName))? $displayName : $nameDb;
+=======
+         $nameDbSort = $nameDb. '_Sort';
+>>>>>>> origin/master
         $ascActive  = (strtolower($this->view->$nameDbSort) == 'asc')  ? "active" : '';
         $descActive = (strtolower($this->view->$nameDbSort) == 'desc') ? "active" : '';
 
         echo "<th>
                  <div class='' style='position:relative; '>
                     <div style='height:42px; line-height:42px; vertical-align:middle;'>
+<<<<<<< HEAD
                         <span>". $this->view->text($displayName)."</span>
+=======
+                        <span>". $this->view->text($nameDb)."</span>
+>>>>>>> origin/master
                         $option
                     </div>
                     <div class='pull-right' style='position:absolute; right:0px; top:0px; width:15px;'>

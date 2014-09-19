@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php 
     $form = $this->form;
     $controller = ltrim(preg_replace("/([A-Z])/", "-$1", '%%TABLE_NAME%%'), '-');
@@ -12,6 +13,17 @@
           </div>
           <h2>
               Delete <?php echo $this->text($controller); ?>        
+=======
+<div class="row-fluid">
+    <div class="span12">
+          <div class="pull-right">
+              <a href="<?php echo $this->url(array('controller' => $this->text(strtolower('%%TABLE_NAME%%')), 'action'=>$this->showAllUrl), null, true) ?>" >
+                  Back to list <?php echo $this->text('%%TABLE_NAME%%'); ?>
+              </a>
+          </div>
+          <h2>
+              Delete <?php echo $this->text('%%TABLE_NAME%%'); ?>        
+>>>>>>> origin/master
           </h2>
     </div>
 </div>
@@ -20,15 +32,24 @@
     <div class="span12">
         <form class="form-horizontal" method="post" action="">
             <fieldset>
+<<<<<<< HEAD
                 			<!--<h2>Are you sure you want to delete this item?</h2>-->
                 			                			
                 			%%FORM_ELEMENTS%%
+=======
+                
+                			Are you sure you want to delete this item?
+>>>>>>> origin/master
                 
                 <div class="form-actions">
                     <input type="hidden" name="value" id="value" value="<?php $this->id?>">
                     <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Submit</button>
                     <button type="button" class="btn"><i class="icon-refresh"></i>
+<<<<<<< HEAD
                     	<a href="<?php echo $this->url(array('controller' => $this->text(strtolower($controller)), 'action'=>$this->showAllUrl), null, true) ?>" >
+=======
+                    	<a href="<?php echo $this->url(array('controller' => $this->text(strtolower('%%TABLE_NAME%%')), 'action'=>$this->showAllUrl), null, true) ?>" >
+>>>>>>> origin/master
                      		Cancel
                      	</a>
                      </button>

@@ -72,7 +72,11 @@ class %%CONTROLLER_CLASS%% extends %%CONTROLLER_ABSTRACT_CLASS%%
             }
         }
         $this->view->form = $form;
+<<<<<<< HEAD
         $this->view->showAllUrl = '%%SHOW_ACTION%%';        
+=======
+        $this->view->showAllUrl = '%%SHOW_ACTION%%';
+>>>>>>> origin/master
     }
     	
     /**
@@ -140,10 +144,13 @@ class %%CONTROLLER_CLASS%% extends %%CONTROLLER_ABSTRACT_CLASS%%
         }
        
         $form = new %%FORM_CLASS%%();
+<<<<<<< HEAD
         foreach($form->getElements() as $element){
         	if($element instanceof Zend_Form_Element_Text)
         		$element->setAttrib('disabled', true);
         }
+=======
+>>>>>>> origin/master
 
         /* Proccess data post*/
         if($this->_request->isPost()) {
@@ -156,8 +163,11 @@ class %%CONTROLLER_CLASS%% extends %%CONTROLLER_ABSTRACT_CLASS%%
         }
          
         $this->view->id = $id;
+<<<<<<< HEAD
         $form->populate($row->toArray());
         $this->view->form = $form;
+=======
+>>>>>>> origin/master
         $this->view->showAllUrl = '%%SHOW_ACTION%%';
     }
     
