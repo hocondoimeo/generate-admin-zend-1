@@ -866,7 +866,8 @@ navigation.%%TABLE_NAME%%.pages.%%TABLE_NAME%%.visible    = true
     private function _getThGroup($fields){
         $tmpArr = array();
         foreach($fields as $field){
-            $tmpArr[] = "<?php \$this->renderTh('{$field['Field']}'); ?>";
+            $fieldName = ltrim(preg_replace("/([A-Z])/", " $1", "{$field['Field']}"), ' ');
+            $tmpArr[] = "<?php \$this->renderTh('{$field['Field']}','{$fieldName}'); ?>";
         }
         return implode("\n{$this->_padding5}", $tmpArr);
     }
@@ -875,7 +876,8 @@ navigation.%%TABLE_NAME%%.pages.%%TABLE_NAME%%.visible    = true
         $tmpArr = array();
         foreach($fields as $field){
             $t = str_pad("'{$field['Field']}'",30);
-            $tmpArr[] = "{$t} => \$this->text('{$field['Field']}', false),";
+            $fieldName = ltrim(preg_replace("/([A-Z])/", "-$1", "{$field['Field']}"), '-');
+            $tmpArr[] = "{$t} => \$this->text('{$fieldName}', false),";
         }
         return implode("\n{$this->_padding1}", $tmpArr);
     }

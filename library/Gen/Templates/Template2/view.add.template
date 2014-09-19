@@ -7,11 +7,11 @@
     <div class="span12">
           <div class="pull-right">
               <a href="<?php echo $this->url(array('controller' => $this->text(strtolower($controller)), 'action'=>$this->showAllUrl), null, true) ?>" >	
-                  Back to list <?php echo $this->text('%%TABLE_NAME%%'); ?>
+                  Back to list <?php echo $this->text($controller); ?>
               </a>
           </div>
           <h2>
-              Add <?php echo $this->text('%%TABLE_NAME%%'); ?>        
+              Add <?php echo $this->text($controller); ?>        
           </h2>
     </div>
 </div>

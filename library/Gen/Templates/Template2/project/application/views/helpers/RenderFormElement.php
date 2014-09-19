@@ -35,10 +35,11 @@ class Zend_View_Helper_RenderFormElement extends Zend_View_Helper_Abstract
         if($element->getType() == 'Zend_Form_Element_Textarea'){
             
         }
+        $label = trim(preg_replace("/([A-Z])/", " $1", "{$element->getLabel()}"), ' ');
         $variables = array(
             '%%ERROR_CLASS%%' => $error,
             '%%ELEMENT_NAME%%' => $element->getName(),
-            '%%ELEMENT_LABEL%%' => $element->getLabel(),
+            '%%ELEMENT_LABEL%%' => $label,
             '%%ELEMENT%%' => $element,
             '%%HELP_MESSAGE%%' => current($element->getMessages()),
         );
