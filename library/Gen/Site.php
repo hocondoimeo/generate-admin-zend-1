@@ -289,13 +289,8 @@ navigation.%%TABLE_NAME%%.pages.%%TABLE_NAME%%.visible    = true
             $showAllRecordContent   = $this->_getViewShowAllRecordContent($tableName,$fields);
             $this->_createFile($partialDir, $this->_getViewShowRecordFileName($tableName), $showAllRecordContent);
 
-<<<<<<< HEAD
             $deleteContent    = $this->_getViewDeleteContent($tableName,$fields);
             $this->_createFile($scriptDir, $this->_getViewDeleteFileName($tableName), $deleteContent);
-=======
-            $updateContent    = $this->_getViewDeleteContent($tableName,$fields);
-            $this->_createFile($scriptDir, $this->_getViewDeleteFileName($tableName), $updateContent);
->>>>>>> origin/master
             
             $updateContent    = $this->_getViewUpdateContent($tableName,$fields);
             $this->_createFile($scriptDir, $this->_getViewUpdateFileName($tableName), $updateContent);
@@ -871,12 +866,8 @@ navigation.%%TABLE_NAME%%.pages.%%TABLE_NAME%%.visible    = true
     private function _getThGroup($fields){
         $tmpArr = array();
         foreach($fields as $field){
-<<<<<<< HEAD
             $fieldName = ltrim(preg_replace("/([A-Z])/", " $1", "{$field['Field']}"), ' ');
-            $tmpArr[] = "<?php \$this->renderTh('{$field['Field']}','{$fieldName}'); ?>";
-=======
-            $tmpArr[] = "<?php \$this->renderTh('{$field['Field']}'); ?>";
->>>>>>> origin/master
+            $tmpArr[] = "<?php \$this->renderTh('{$fieldName}'); ?>";
         }
         return implode("\n{$this->_padding5}", $tmpArr);
     }
@@ -885,12 +876,7 @@ navigation.%%TABLE_NAME%%.pages.%%TABLE_NAME%%.visible    = true
         $tmpArr = array();
         foreach($fields as $field){
             $t = str_pad("'{$field['Field']}'",30);
-<<<<<<< HEAD
-            $fieldName = ltrim(preg_replace("/([A-Z])/", "-$1", "{$field['Field']}"), '-');
-            $tmpArr[] = "{$t} => \$this->text('{$fieldName}', false),";
-=======
             $tmpArr[] = "{$t} => \$this->text('{$field['Field']}', false),";
->>>>>>> origin/master
         }
         return implode("\n{$this->_padding1}", $tmpArr);
     }

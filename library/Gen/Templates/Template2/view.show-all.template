@@ -11,7 +11,6 @@
 <?php endif;?>
 </div>
 
-<<<<<<< HEAD
 <?php 
     $controller = ltrim(preg_replace("/([A-Z])/", " $1", '%%TABLE_NAME%%'), ' ');
 ?>
@@ -20,12 +19,6 @@
     <div class="span12">
         <h2>
             <?php echo $this->text($controller) ?>
-=======
-<div class="row-fluid show-grid">
-    <div class="span12">
-        <h2>
-            <?php echo $this->text('%%TABLE_NAME%%') ?>
->>>>>>> origin/master
         </h2>
     </div>
 </div>
@@ -38,11 +31,7 @@ $buttons = array(
     "<a class='btn btn-small btn-primary'  
         href='{$this->url(array('action' => 'add-'. $this->controller))}'>
         <i class='icon-plus'></i>
-<<<<<<< HEAD
-        Add {$this->text($controller)}
-=======
         Add {$this->text('%%TABLE_NAME%%')}
->>>>>>> origin/master
     </a>"
 );
 echo $this->searchBar($typeSearchs, null, $buttons);
