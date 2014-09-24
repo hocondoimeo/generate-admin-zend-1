@@ -53,6 +53,7 @@ class %%CONTROLLER_CLASS%% extends %%CONTROLLER_ABSTRACT_CLASS%%
     */
     public function add%%TABLE_NAME%%Action() {
         $form = new %%FORM_CLASS%%();
+        $form->changeModeToAdd();
 
         /* Proccess data post*/
         if($this->_request->isPost()) {
@@ -73,7 +74,6 @@ class %%CONTROLLER_CLASS%% extends %%CONTROLLER_ABSTRACT_CLASS%%
         }
         $this->view->form = $form;
         $this->view->showAllUrl = '%%SHOW_ACTION%%';        
-    	$this->view->controller = Regex.Replace('%%TABLE_NAME%%', "(?<=[a-z])([A-Z])", "-$1");
     }
     	
     /**
@@ -97,6 +97,7 @@ class %%CONTROLLER_CLASS%% extends %%CONTROLLER_ABSTRACT_CLASS%%
         }
     
         $form = new %%FORM_CLASS%%();
+        $form->changeModeToUpdate($id);
 
         /* Proccess data post*/
         if($this->_request->isPost()) {
@@ -119,7 +120,8 @@ class %%CONTROLLER_CLASS%% extends %%CONTROLLER_ABSTRACT_CLASS%%
         $form->populate($row->toArray());
         $this->view->form = $form;
         $this->view->showAllUrl = '%%SHOW_ACTION%%';
-        $this->view->controller = Regex.Replace('%%TABLE_NAME%%', "(?<=[a-z])([A-Z])", "-$1");
+        $controller = ltrim(preg_replace("/([A-Z])/", "-$1", '%%TABLE_NAME%%'), '-');
+        $this->_helper->viewRenderer->setRender('add-'.$controller);
     }
     
     /**
@@ -142,15 +144,21 @@ class %%CONTROLLER_CLASS%% extends %%CONTROLLER_ABSTRACT_CLASS%%
         }
        
         $form = new %%FORM_CLASS%%();
+        $form->changeModeToDelete($id) ;
+        
         foreach($form->getElements() as $element){
-        	if($element instanceof Zend_Form_Element_Text)
+        	if($element instanceof Zend_Form_Element_Text ||
+                 $element instanceof Zend_Form_Element_Checkbox ||
+                 $element instanceof Zend_Form_Element_Select ||
+                 $element instanceof Zend_Form_Element_Textarea)
         		$element->setAttrib('disabled', true);
         }
 
         /* Proccess data post*/
         if($this->_request->isPost()) {
             $formData = $this->_request->getPost();
-           	if($row && $this->_model->deleteRow($id)) {
+            //$id = $formData['NewsId'];
+            if(isset($id) && !empty($id) && $this->_model->deleteRow($id)) {
                     $msg = str_replace(array("{subject}"),array("%%TABLE_NAME%%"),'%%ALERT_MESSAGES_DELETE_SUCCESS%%');
                  	$this->_helper->flashMessenger->addMessage($msg);
             }
@@ -161,6 +169,8 @@ class %%CONTROLLER_CLASS%% extends %%CONTROLLER_ABSTRACT_CLASS%%
         $form->populate($row->toArray());
         $this->view->form = $form;
         $this->view->showAllUrl = '%%SHOW_ACTION%%';
+        $controller = ltrim(preg_replace("/([A-Z])/", "-$1", '%%TABLE_NAME%%'), '-');
+        $this->_helper->viewRenderer->setRender('add-'.$controller);
     }
     
     /**

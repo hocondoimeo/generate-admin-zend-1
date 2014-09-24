@@ -11,4 +11,23 @@ class %%FORM_CLASS%% extends %%FORM_ABSTRACT_CLASS%%
     {
         %%FORM_ELEMENTS%%
     }
+    
+     public function changeModeToAdd() {
+    	//$this->removeElement('LastUpdated');
+    	//$this->removeElement('CreatedDate');
+    	$this->getElement('Save')->setLabel('Add');
+    }
+    
+    public function changeModeToUpdate($cateId) {
+    	//$this->removeElement('CreatedDate');
+    	//$this->removeElement('LastUpdated');
+    	//$this->getElement('MenuCode')->setAttrib('disabled', true);
+    	$this->getElement('Save')->setLabel('Update')->setAttrib('class', 'btn btn-warning');
+    }
+    
+    public function changeModeToDelete($cateId) {
+    	//$this->removeElement('CreatedDate');
+    	//$this->removeElement('LastUpdated');
+    	$this->getElement('Save')->setLabel('Delete')->setAttrib('class', 'btn btn-danger');
+    }
 }

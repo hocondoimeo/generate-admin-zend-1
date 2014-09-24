@@ -1,6 +1,9 @@
 <?php 
     $form = $this->form;
     $controller = ltrim(preg_replace("/([A-Z])/", "-$1", '%%TABLE_NAME%%'), '-');
+    $label = $form->getElement('Save')->getLabel();
+    $title = ($label == 'Delete')? 'Delete' : 'Update' ;
+    if($label == 'Add') $title = 'Add';
 ?>
 
 <div class="row-fluid">
@@ -11,7 +14,7 @@
               </a>
           </div>
           <h2>
-              Add <?php echo $this->text($controller); ?>        
+              <?php echo $title.' '.$this->text($controller); ?>        
           </h2>
     </div>
 </div>

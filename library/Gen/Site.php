@@ -17,6 +17,7 @@ class Gen_Site{
     const FORM_ELEMENT_SELECT           = 'radio';
     const FORM_ELEMENT_HIDDEN           = 'hidden';
     const FORM_ELEMENT_SUBMIT           = 'submit';
+    const FORM_ELEMENT_RESET         = 'reset';
     
     const ERROR_VALIDATION         = 'danger/There are validation error(s) on the form. Please review the following field(s):';
     const ERROR_URL         = 'danger/There is an error on the url. This id is not exist';
@@ -56,6 +57,12 @@ class Gen_Site{
         ),
         self::FORM_ELEMENT_SELECT => array(
             'enum'
+        ),
+        self::FORM_ELEMENT_SUBMIT => array(
+        		'submit'
+        ),
+        self::FORM_ELEMENT_RESET=> array(
+        		'reset'
         ),
     );
 
@@ -641,6 +648,54 @@ navigation.%%TABLE_NAME%%.pages.%%TABLE_NAME%%.visible    = true
         $content = implode("\n" . $this->_padding2, $arrTmp);
         return $content;
     }
+    
+    /**
+     * @desc    get Element whose type is 'Submit'
+     * @param array $field
+     * @return string
+     */
+    protected function _getFormElementButtonSubmit($field){
+    	$variableName = "$" . lcfirst($field['Field']);
+    	$arrTmp = array();
+    
+    	$arrTmp[] = "$variableName = new Zend_Form_Element_Submit('{$field['Field']}');";
+    
+    	$arrTmp[] = "{$variableName}->setLabel('{$field['Field']}');";
+    	
+    	$arrTmp[] = "{$variableName}->setAttrib('class', 'btn btn-primary');";
+    
+    	$arrTmp[] = "{$variableName}->setDecorators(array('ViewHelper'));";
+    
+    	$arrTmp[] = "\$this->addElement($variableName);\n";
+    
+    	$content = implode("\n" . $this->_padding2 , $arrTmp);
+    	return $content;
+    
+    }
+    
+    /**
+     * @desc    get Element whose type is 'Reset'
+     * @param array $field
+     * @return string
+     */
+    protected function _getFormElementButtonReset($field){
+    	$variableName = "$" . lcfirst($field['Field']);
+    	$arrTmp = array();
+    
+    	$arrTmp[] = "$variableName = new Zend_Form_Element_Reset('{$field['Field']}');";
+    
+    	$arrTmp[] = "{$variableName}->setLabel('{$field['Field']}');";
+    	 
+    	$arrTmp[] = "{$variableName}->setAttrib('class', 'btn btn-primary')";
+    
+    	$arrTmp[] = "{$variableName}->setDecorators(array('ViewHelper'));";
+    
+    	$arrTmp[] = "\$this->addElement($variableName);\n";
+    
+    	$content = implode("\n" . $this->_padding2 , $arrTmp);
+    	return $content;
+    
+    }
     /**
      * @param array $field
      * @return string
@@ -663,8 +718,12 @@ navigation.%%TABLE_NAME%%.pages.%%TABLE_NAME%%.visible    = true
                 return $this->_getFormElementMultiCheckboxContent($field);
             case self::FORM_ELEMENT_SELECT :
                 return $this->_getFormElementSelectContent($field);
-            case self::FORM_ELEMENT_HIDDEN :
+            case self::FORM_ELEMENT_HIDDEN : 
                 return $this->_getFormElementHiddenContent($field);
+            case self::FORM_ELEMENT_SUBMIT:
+                	return $this->_getFormElementButtonSubmit($field);
+        	case self::FORM_ELEMENT_RESET :
+        		return $this->_getFormElementButtonReset($field);
             default:
                 self::putMsg('Form element fail');
             break;
@@ -682,7 +741,23 @@ navigation.%%TABLE_NAME%%.pages.%%TABLE_NAME%%.visible    = true
     private function _getContentForm($tableName,$fields){
         $modelTemplatePath = $this->_templatePath . '/form.template';
         $fields = $this->_getFieldsInTable($tableName);
-//        Zend_Debug::dump($fields);die;
+        $fields[] = array(
+            'Field' => 'Save',
+            'Type' => 'submit',
+            'Null' => 'NO',
+            'Key' =>  '',
+            'Default' => 'Save',
+            'Extra' => ''
+        );
+        $fields[] = array(
+        		'Field' => 'Reset',
+        		'Type' => 'reset',
+        		'Null' => 'NO',
+        		'Key' =>  '',
+        		'Default' => 'Reset',
+        		'Extra' => ''
+        );
+       //Zend_Debug::dump($fields);die;
         $variables = array(
             '%%FORM_CLASS%%'            => $this->_getFormClass($tableName),
             '%%FORM_ABSTRACT_CLASS%%'   => self::FORM_ABSTRACT_CLASS,
