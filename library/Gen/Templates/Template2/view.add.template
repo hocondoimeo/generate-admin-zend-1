@@ -38,11 +38,7 @@
             <fieldset>
                 
                 %%FORM_ELEMENTS%%
-                
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Submit</button>
-                    <button type="reset" class="btn"><i class="icon-refresh"></i> Reset</button>
-                </div>
+                                
             </fieldset>
         </form>
     </div>

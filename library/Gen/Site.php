@@ -37,7 +37,7 @@ class Gen_Site{
             'varchar',
         ),
         self::FORM_ELEMENT_INT => array(
-            'int',
+            'int', 'tinyint'
         ),
         self::FORM_ELEMENT_FLOAT => array(
             'float',
@@ -45,15 +45,11 @@ class Gen_Site{
             'decimal',
         ),
         self::FORM_ELEMENT_DATE => array(
-            'date',
-            'time',
+            'date', 'time', 'timestamp'
         ),
         self::FORM_ELEMENT_TEXTAREA => array(
             'text',
             'blob',
-        ),
-        self::FORM_ELEMENT_MULTI_CHECKBOX => array(
-            'set'
         ),
         self::FORM_ELEMENT_SELECT => array(
             'enum'
@@ -63,6 +59,9 @@ class Gen_Site{
         ),
         self::FORM_ELEMENT_RESET=> array(
         		'reset'
+        ),
+        self::FORM_ELEMENT_MULTI_CHECKBOX => array(
+            'set'
         ),
     );
 
@@ -686,7 +685,7 @@ navigation.%%TABLE_NAME%%.pages.%%TABLE_NAME%%.visible    = true
     
     	$arrTmp[] = "{$variableName}->setLabel('{$field['Field']}');";
     	 
-    	$arrTmp[] = "{$variableName}->setAttrib('class', 'btn btn-primary')";
+    	$arrTmp[] = "{$variableName}->setAttrib('class', 'btn btn-primary');";
     
     	$arrTmp[] = "{$variableName}->setDecorators(array('ViewHelper'));";
     
